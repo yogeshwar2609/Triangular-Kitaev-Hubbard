@@ -5,7 +5,7 @@ from config import *
 
 __all__=['edconstruct']
 
-def edconstruct(name,parameters,sectors,lattice,terms,statistics,**karg):
+def edconstruct(name,parameters,sectors,lattice,terms,boundaries,statistics,**karg):
     config=IDFConfig(priority=DEFAULT_FERMIONIC_PRIORITY,pids=lattice.pids,map=idfmap)
     ed=ED.FED(
         dlog=       'log',
@@ -18,6 +18,7 @@ def edconstruct(name,parameters,sectors,lattice,terms,statistics,**karg):
         lattice=    lattice,
         config=     config,
         terms=      [term(statistics,**parameters) for term in terms],
+        boundaries= boundaries,
         dtype=      np.complex128
         )
     return ed

@@ -5,7 +5,7 @@ from config import *
 
 __all__=['tbaconstruct']
 
-def tbaconstruct(name,parameters,lattice,terms,statistics,**karg):
+def tbaconstruct(name,parameters,lattice,terms,boundaries,statistics,**karg):
     config=IDFConfig(priority=DEFAULT_FOCK_PRIORITY,pids=lattice.pids,map=idfmap)
     tba=TBA.TBA(
         dlog=       'log',
@@ -17,6 +17,7 @@ def tbaconstruct(name,parameters,lattice,terms,statistics,**karg):
         lattice=    lattice,
         config=     config,
         terms=      [term(statistics,**parameters) for term in terms],
+        boundaries= boundaries,
         dtype=      np.complex128
         )
     return tba
